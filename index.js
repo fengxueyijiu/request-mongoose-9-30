@@ -24,7 +24,7 @@ app.get('/write', function (req, res) {
 
 })
 app.get('/posts', function(req, res) {
-    res.redirect('https://www.baidu.com')
+    res.send('<h1>All my blog </h1>')
     console.log('GET /posts')
   })
 // app.get('/posts/:post_id', function (req, res) {
