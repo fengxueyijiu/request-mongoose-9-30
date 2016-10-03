@@ -24,7 +24,9 @@ app.get('/write', function (req, res) {
 
 })
 app.get('/posts', function(req, res) {
-    res.send('<h1>All my blog </h1>')
+  Post.find().exec(function(err, posts) {
+      res.send(posts)
+      });
     console.log('GET /posts')
   })
 // app.get('/posts/:post_id', function (req, res) {
