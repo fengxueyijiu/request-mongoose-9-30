@@ -52,13 +52,13 @@ app.get('/posts', function(req, res) {
 app.post('/posts/',function(req,res){
   console.log('POST /posts')
   // res.send('The Blog title is: '+req.body.title)
-  res.redirect('/posts')
+
   var post =new Post({title:req.body.title});
   post.save(function(err){
-    if(err)console.log(err);
+    if(err) return console.log(err);
     console.log('saved!')
   })
-
+  res.json({message:'成功'})
 })
 // app.delete('/posts/:id',function(req,res){
 //   console.log('DELETE /posts/:id')
