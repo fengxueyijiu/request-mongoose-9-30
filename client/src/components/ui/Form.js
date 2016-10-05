@@ -64,11 +64,13 @@ class Form extends Component {
   handleSubmit(e){
     e.preventDefault();  //阻止跳转
     let title = this.refs.title.value;
+    let category = this.refs.category.value;
+    let content = this.refs.content.value;
     if(title.length==0){
       alert('内容不能为空')
       return;
     }
-    this.props.newPost(title);
+    this.props.newPost({title,category,content});
   }
   render() {
     const styles = this.getStyles();

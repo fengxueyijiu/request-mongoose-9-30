@@ -38,6 +38,13 @@ app.get('/posts', function(req, res) {
       });
     console.log('GET /posts')
   })
+app.get('/post/:id',function(req,res){
+  // res.send(req.params.id)   //后台动态路由
+  Post.findById({_id:req.params.id},function(err,doc){
+    if(err) return res.send('出错了');
+    res.json({post:doc})
+  })
+})
 // app.get('/posts/:post_id', function (req, res) {
 //   console.log('GET /posts/:id')
 //   res.send('GET /posts/:post_id')
@@ -53,7 +60,12 @@ app.post('/posts/',function(req,res){
   console.log('POST /posts')
   // res.send('The Blog title is: '+req.body.title)
 
-  var post =new Post({title:req.body.title});
+  console.log(req.body);
+  var post = new Post({
+    title:req.body.title,
+    category:req.body.category,
+    content:req.body.content
+  })
   post.save(function(err){
     if(err) return console.log(err);
     console.log('saved!')
