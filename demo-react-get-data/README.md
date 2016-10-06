@@ -5,4 +5,4 @@
    - 负责编译出产品代码
 #### Babel：
     - 提供ES6——》ES5
-    - React
+    - React的JSX用Babel来编译成js
