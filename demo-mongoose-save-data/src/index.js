@@ -1,6 +1,6 @@
 var express=require('express');
 var app=express();
-var bodyParser=require('body-parser');    //3-4行首先装包bodyParser.然后用于命令行模拟curl -H详情笔记本
+var bodyParser=require('body-parser');    //3-4行首先装包bodyParser.然后用于命令行模拟curl -H详情笔记本  (req.body也需要)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))    //yongyu浏览器地址栏：localhost:3000/write
 var mongoose = require('mongoose');

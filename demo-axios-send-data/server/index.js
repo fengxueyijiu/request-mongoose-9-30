@@ -5,6 +5,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))    //yongyu浏览器地址栏：localhost:3000/write
 app.post('/posts',function(req,res){
 
+
   console.log(req.body);  //xuyao一个包的支持即body-parser
 })
 
