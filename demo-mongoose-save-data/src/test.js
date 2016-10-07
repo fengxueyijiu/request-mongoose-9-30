@@ -7,7 +7,7 @@ db.on('error', console.log);
 db.once('open', function() {                      //5-9行 后台执行$ node test.js 输出succes！则代表连接成功
   console.log('success!')
 });
-var Schema = mongoose.Schema;     
+var Schema = mongoose.Schema;
 var PostSchema = new Schema(
   {
     name:String,
