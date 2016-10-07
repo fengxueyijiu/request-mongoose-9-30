@@ -1,31 +1,27 @@
 var express = require('express');
 var app = express();
 var mongoose=require('mongoose');  //在js代码中导入mongoose
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/digicity-express-api') //进行数据库的连接
 var db = mongoose.connection;
 db.on('error', console.log);
-db.once('open', function() {                      //5-9行 后台执行$ node test.js 输出succes！则代表连接成功
+db.once('open', function() {                      //6-10行 后台执行$ node test.js 输出succes！则代表连接成功
   console.log('success!')
 });
-var Schema = mongoose.Schema;
-var PostSchema = new Schema(
-  {
-    name:String,
-    category:String,
+var Schema=mongoose.Schema;
+var PostSchema=new Schema(
+  {title:String,
     content:String
-
-  },
-  {
-    timestamps:true
   }
-)
-var catty= mongoose.model('Cat',PostSchema);
-var cat=new catty({name:'mony'});   //实例化
-console.log(cat.name);
-cat.save();
-
+  );
+var Post = mongoose.model('Post',PostSchema);
 app.post('/posts', function(req, res){
-  console.log('hello');
+  console.log('run post.save()');
+  var post = new Post({title:"myTitle", content: "myConent"})
+  post.save(function(err){
+    if(err) return console.log(err);
+    console.log('saved');
+  });
 
 });
 
