@@ -1,9 +1,13 @@
 var express = require('express');
 var app = express();
-var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/digicity-express-api')
-// var db=mongoose.connection;
-var Schema = mongoose.Schema;
+var mongoose=require('mongoose');  //在js代码中导入mongoose
+mongoose.connect('mongodb://localhost:27017/digicity-express-api') //进行数据库的连接
+var db = mongoose.connection;
+db.on('error', console.log);
+db.once('open', function() {                      //5-9行 后台执行$ node test.js 输出succes！则代表连接成功
+  console.log('success!')
+});
+var Schema = mongoose.Schema;     
 var PostSchema = new Schema(
   {
     name:String,
