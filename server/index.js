@@ -22,14 +22,11 @@ db.once('open', function() {
      console.log('success!')
    });
 
-app.get('/write', function (req, res) {
-  var page ="<form method='post' action='/posts'>"+
-              "<input type='text'  name='title'/>"+
-              "<input type='submit' />"+
-            "</form>"
+app.get('/', function (req, res) {
 
-  console.log('GET /posts')
-  res.send(page)
+
+
+  res.send("this is api server")
 
 })
 app.get('/posts', function(req, res) {

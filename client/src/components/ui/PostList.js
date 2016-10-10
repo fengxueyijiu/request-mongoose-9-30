@@ -21,7 +21,8 @@ export default class PostList extends Component {
         backgroundColor: '#fff',
         borderRadius: '5px',
         padding: '16px',
-        boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
+        boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+        minHeight: '80px'
       },
       title: {
         fontSize: '1.2em'
@@ -61,7 +62,7 @@ export default class PostList extends Component {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
-          <Link to={`/post/${post._id}`} style={styles.a}>查看</Link>
+          <Link to={`/posts/${post._id}`} style={styles.link}>查看</Link>
         </div>
       )
     }, this.state.posts);

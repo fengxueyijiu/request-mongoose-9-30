@@ -2,7 +2,7 @@ var express=require('express');
 var app=express();
 var bodyParser=require('body-parser');    //3-4行首先装包bodyParser.然后用于命令行模拟curl -H详情笔记本  (req.body也需要)
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))    //yongyu浏览器地址栏：localhost:3000/write
+app.use(bodyParser.urlencoded({ extended: false }))    //yongyu浏览器地址栏：localhost:3000/write // 如果想使用 form 提交，这一行是必要的
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;      //清除过期警告。
 mongoose.connect('mongodb://localhost:27017/request-mongoose-9-30');

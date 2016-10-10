@@ -9,7 +9,7 @@ export const renderRoutes = () => (
      <Route path="/" component={App}>
        <IndexRoute component={PostList} />
        <Route path="/write" component={NewPost} />
-       <Route path="/post/:id" component={ShowPost} />
+       <Route path="/posts/:id" component={ShowPost} />
      </Route>
    </Router>
  );
