@@ -19,6 +19,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
+  devtool: 'cheap-module-source-map',          //浏览器调试用 可以看到具体是那个文件第几行
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
