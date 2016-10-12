@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import map from 'lodash/fp/map';
 import axios from 'axios';
 import {Link} from 'react-router';
-
+import Settings from '../../settings';
+import filter from 'lodash/fp/filter';
 export default class PostList extends Component {
   constructor() {
     super();
@@ -54,22 +55,39 @@ export default class PostList extends Component {
       this.setState({
         posts: res.data.posts
       });
-      console.log(this.state.posts);
+      console.log(res.data.posts);
     });
   }
-  handleClick(){
-    alert('aaaaaaa')
+  filterPosts(id) {
+    const posts = filter((post) => {
+      console.log(post._id)
+      return post._id !== id
+    }, this.state.posts);
+
+    this.setState({ posts: posts })
+  }
+  handleClick(value){
+    // REST
+    console.log(value);
+    console.log("----handleClick!!!");
+    axios.delete(`${Settings.host}/posts/${value}`).then(res => {
+      console.log('deleted!');
+      console.log(res.data);
+      console.log('filering..!');
+      this.filterPosts(value);
+    })
   }
   render() {
     const styles = this.getStyles();
     const postList = map((post) => {
+
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
           <div style={styles.actions}>
             <Link to={`/posts/${post._id}`} style={styles.link}>查看</Link>
             <Link to={`/posts/${post._id}/edit`} style={styles.link}>编辑</Link>
-            <Link to={``} style={styles.link} onClick={this.handleClick.bind(this)}>删除</Link>
+            <Link to={``} style={styles.link} onClick={this.handleClick.bind(this, post._id)}>删除</Link>
           </div>
         </div>
       )

@@ -12,9 +12,21 @@ module.exports = function(app) {
   })
   app.get('/post/:id', function(req, res) {
     Post.findById({_id:req.params.id},function (err,doc) {
+    
       if (err) return res.send('出错了');
       res.json({post: doc})
     })
+  })
+  app.delete('/posts/:id', function(req, res) {
+
+    Post.findById({_id: req.params.id}, function(err, post) {
+      console.log(post);
+      post.remove(function(){
+        res.json({
+          message: '文章删除成功了！'
+        });
+      });
+    });
   })
   app.put('/posts/:id', function(req, res) {
 
