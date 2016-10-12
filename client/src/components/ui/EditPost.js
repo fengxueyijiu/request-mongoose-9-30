@@ -12,6 +12,7 @@ export default class EditPost extends Component {
   }
   componentDidMount() {
     var id = this.props.params.id;
+    console.log(this.props)
 
     axios.get(`${Settings.host}/post/${id}`).then(res => {
       this.setState({
@@ -21,15 +22,46 @@ export default class EditPost extends Component {
       console.log(res)
     })
   }
+  publishPost(data1){
+    var id = this.props.params.id
 
+    axios.put(`${Settings.host}/posts/${id}`,data1).then(res=> {
+      console.log(res.data);
+      console.log(res);
+      console.log("aaaaaaaa");
+      this.context.router.push('/');
+    })
+  }
+  getStyles() {
+   return {
+     content: {
+       width: '100%',
+       maxWidth: '600px',
+       margin: '30px auto',
+       backgroundColor: '#fff',
+       borderRadius: '10px',
+       boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
+     },
+     title: {
+       fontSize: '1.2em',
+       textAlign: 'center',
+       paddingTop: '20px'
+     }
+   };
+ }
   render(){
+    const styles = this.getStyles();
+
     return(
 
-      <div>
+      <div style={styles.content}>
 
-        { !isEmpty(this.state.post) ? <EditForm post={this.state.post} />: "plz wait..."}
+        { !isEmpty(this.state.post) ? <EditForm post={this.state.post} publishPost={this.publishPost.bind(this)} />: "plz wait..."}
       </div>
     )
   }
 
 }
+EditPost.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};

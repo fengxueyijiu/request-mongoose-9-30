@@ -21,27 +21,28 @@ db.on('error', console.log);
 db.once('open', function() {
      console.log('success!')
    });
-
-app.get('/', function (req, res) {
-
-
-
-  res.send("this is api server")
-
-})
-app.get('/posts', function(req, res) {
-  Post.find().exec(function(err, posts) {
-      res.json({ posts: posts})
-      });
-    console.log('GET /posts')
-  })
-app.get('/post/:id',function(req,res){
-  // res.send(req.params.id)   //后台动态路由
-  Post.findById({_id:req.params.id},function(err,doc){
-    if(err) return res.send('出错了');
-    res.json({post:doc})
-  })
-})
+var routes = require('./routes');
+routes(app);
+// app.get('/', function (req, res) {
+//
+//
+//
+//   res.send("this is api server")
+//
+// })
+// app.get('/posts', function(req, res) {
+//   Post.find().exec(function(err, posts) {
+//       res.json({ posts: posts})
+//       });
+//     console.log('GET /posts')
+//   })
+// app.get('/post/:id',function(req,res){
+//   // res.send(req.params.id)   //后台动态路由
+//   Post.findById({_id:req.params.id},function(err,doc){
+//     if(err) return res.send('出错了');
+//     res.json({post:doc})
+//   })
+// })
 // app.get('/posts/:post_id', function (req, res) {
 //   console.log('GET /posts/:id')
 //   res.send('GET /posts/:post_id')
@@ -53,22 +54,22 @@ app.get('/post/:id',function(req,res){
 //   console.log('PUT /posts/:id')
 //   res.send('PUT /posts/:id')
 // })
-app.post('/posts/',function(req,res){
-  console.log('POST /posts')
+// app.post('/posts/',function(req,res){
+//   console.log('POST /posts')
   // res.send('The Blog title is: '+req.body.title)
 
-  console.log(req.body);
-  var post = new Post({
-    title:req.body.title,
-    category:req.body.category,
-    content:req.body.content
-  })
-  post.save(function(err){
-    if(err) return console.log(err);
-    console.log('saved!')
-  })
-  res.json({message:'成功'})
-})
+//   console.log(req.body);
+//   var post = new Post({
+//     title:req.body.title,
+//     category:req.body.category,
+//     content:req.body.content
+//   })
+//   post.save(function(err){
+//     if(err) return console.log(err);
+//     console.log('saved!')
+//   })
+//   res.json({message:'成功'})
+// })
 // app.delete('/posts/:id',function(req,res){
 //   console.log('DELETE /posts/:id')
 //   res.send('DELETE /posts/:id')

@@ -39,9 +39,10 @@ export default class PostList extends Component {
         textAlign:'center',
         margin:'10px auto'
       },
-      a:{
+      actions:{
       position:'absolute',
-      right:'20px',
+      right:'16px',
+      bottom:'16px'
       }
 
     }
@@ -56,14 +57,20 @@ export default class PostList extends Component {
       console.log(this.state.posts);
     });
   }
+  handleClick(){
+    alert('aaaaaaa')
+  }
   render() {
     const styles = this.getStyles();
     const postList = map((post) => {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
-          <Link to={`/posts/${post._id}`} style={styles.link}>查看</Link>
-          <Link to={`/posts/${post._id}/edit`} style={styles.link}>编辑</Link>
+          <div style={styles.actions}>
+            <Link to={`/posts/${post._id}`} style={styles.link}>查看</Link>
+            <Link to={`/posts/${post._id}/edit`} style={styles.link}>编辑</Link>
+            <Link to={``} style={styles.link} onClick={this.handleClick.bind(this)}>删除</Link>
+          </div>
         </div>
       )
     }, this.state.posts);
