@@ -55,16 +55,16 @@ export default class PostList extends Component {
       this.setState({
         posts: res.data.posts
       });
-      console.log(res.data.posts);
+      console.log(this.state.posts);
     });
   }
   filterPosts(id) {
-    const posts = filter((post) => {
-      console.log(post._id)
+    var newPosts = filter((post) => {
       return post._id !== id
     }, this.state.posts);
-
-    this.setState({ posts: posts })
+    this.setState({
+      posts: newPosts
+    })
   }
   handleClick(value){
     // REST
@@ -73,6 +73,7 @@ export default class PostList extends Component {
     axios.delete(`${Settings.host}/posts/${value}`).then(res => {
       console.log('deleted!');
       console.log(res.data);
+      //修改this.state.posts里面删除一个Post
       console.log('filering..!');
       this.filterPosts(value);
     })

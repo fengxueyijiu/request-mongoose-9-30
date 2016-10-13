@@ -8,13 +8,15 @@ module.exports = function(app) {
   app.get('/posts', function(req, res) {
     Post.find().exec(function(err, posts) {
       res.json({ posts: posts})
+
     });
   })
   app.get('/post/:id', function(req, res) {
     Post.findById({_id:req.params.id},function (err,doc) {
-    
+
       if (err) return res.send('出错了');
       res.json({post: doc})
+      
     })
   })
   app.delete('/posts/:id', function(req, res) {
